@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../../dist/PayResult.js"></script>
+  <link rel="stylesheet" href="pages.css">
+</head>
+
+<body>
+  <div class="back-list">
+    <img src="../arrow.svg" class="arrow-left" />
+    <span class="back-text">返回</span>
+  </div>
+  <div class="ui-wrapper">
+    <div class="demo-logo__bd">
+      <div class="demo-logo__text">PayResult</div>
+    </div>
+    <div id="result"></div>
+    <div class="demo-operations">
+      <button onclick="result.set({
+              'status': 'error',
+              'title': '支付失败',
+              'content': ''
+            })">设置为支付失败</button>
+      <button onclick="result.hideItems()">隐藏列表</button>
+      <button onclick="result.hideBanner()">隐藏图片</button>
+    </div>
+  </div>
+  <script>
+    // 商户信息
+    var result = new PayResult({
+      element: document.getElementById('result'),
+      status: 'success',
+      title: '支付成功',
+      content: '可在账单中查看支付详情',
+      items: [{
+        title: '付款方式',
+        content: '支付宝',
+      }, {
+        title: '付款金额',
+        content: '1.00',
+      }],
+      banner: {
+        url: 'https://www.alipay.com/',
+        src: 'https://gw.alipayobjects.com/mdn/rms_3dad6b/afts/img/A*3qJAR7mY0YEAAAAAAAAAAAAAARQnAQ'
+      }
+    });
+
+    window.addEventListener('message', (e) => {
+      if (e.data === 'index') {
+        window.location.href = '../index.html';
+        return;
+      }
+      if (typeof e.data === 'string' && e.data !== 'result') {
+        window.location.href = `./${e.data}.html`;
+        return;
+      }
+    }, false);
+
+    window.onload = function () {
+      window.parent.postMessage('result', '*');
+    }
+
+    document.querySelector('.back-list').addEventListener('click', () => {
+      window.location.href = '..'
+    })
+
+  </script>
+</body>
+
+</html>

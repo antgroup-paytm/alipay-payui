@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayFreeModal</title>
+    <script src="../../../dist/PayFreeModal.js"></script>
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+    <div class="back-list">
+        <img src="../arrow.svg" class="arrow-left" />
+        <span class="back-text">返回</span>
+    </div>
+    <div class="ui-wrapper">
+        <div id="freeModal"></div>
+        <div class="demo-operations">
+            <button onclick="freeModal.show();">展示无忧服务弹框</button>
+        </div>
+    </div>
+    <script>
+        var freeModal = new PayFreeModal({
+            element: document.getElementById('freeModal'),
+            params: {
+                'scene': 'wuyou',
+                'tradeNo': '123213123',
+                'appId': '22222'
+            },
+        });
+
+        freeModal.on('show', (e) => {
+            console.log('show', e);
+        });
+
+        freeModal.on('close', (e) => {
+            console.log('close', e);
+        });
+
+        window.addEventListener('message', (e) => {
+            if (e.data === 'index') {
+                window.location.href = '../index.html';
+                return;
+            }
+            if (typeof e.data === 'string' && e.data !== 'freeModal') {
+                window.location.href = `./${e.data}.html`;
+                return;
+            }
+        }, false);
+
+        window.onload = function() {
+            window.parent.postMessage('freeModal', '*');
+        }
+
+        document.querySelector('.back-list').addEventListener('click', () => {
+            window.location.href = '..'
+        })
+    </script>
+</body>
+</html>

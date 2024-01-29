@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../../dist/PayKeyboard.js"></script>
+    <script src="../../../dist/PayToast.js"></script>
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+    <div class="back-list">
+        <img src="../arrow.svg" class="arrow-left" />
+        <span class="back-text">返回</span>
+    </div>
+    <div class="ui-wrapper">
+        <div class="demo-logo__bd">
+          <div class="demo-logo__text">PayKeyboard</div>
+        </div>
+        <div style="margin-bottom: 5px;">当前键盘记录值为：<span id="input1"></span></div>
+        <div id="keyboard"></div>
+        <div id="toast"></div>
+        <div class="demo-operations">
+            <button onclick="keyboard.reset()">重置</button>
+            <button onclick="keyboard.toggleSubmitLoading(true)">提交加载</button>
+            <button onclick="keyboard.toggleSubmitLoading(false)">取消提交加载</button>
+            <button onclick="keyboard.toggleSubmitDisabled(true)">提交禁用</button>
+            <button onclick="keyboard.toggleSubmitDisabled(false)">取消提交禁用</button>
+            <button onclick="keyboard.show()">展示键盘</button>
+            <button onclick="keyboard.hide()">收起键盘</button>
+            <button onclick="keyboard.setColor('#07C160')">修改主题色颜色</button>
+        </div>
+    </div>
+    <script>
+        // 键盘
+        var keyboard = new PayKeyboard({
+            element: document.getElementById('keyboard'),
+            tip: '安全支付保障中',
+            arrow: true
+        });
+        keyboard.on('init',function(e){
+            console.log('keyboard-init')
+        })
+        keyboard.on('click',function(e){
+            console.log('click',e.key)
+        })
+        keyboard.on('change',function(e){
+            document.querySelector('#input1').innerHTML = e.value;
+        })
+        keyboard.on('submit',function(e){
+            console.log('submit value:',parseFloat(e.value))
+        })
+
+        keyboard.on('max',function(e){
+            console.log('max',e)
+            toast.show(e.value + '超过最大金额')
+        })
+
+        // toast 弹框
+        var toast = new PayToast({
+            element: document.getElementById('toast'),
+            tips: '超过最大金额',
+            offset: '150px',
+            duration: 3000
+        });
+
+        window.addEventListener('message', (e) => {
+            if (e.data === 'index') {
+                window.location.href = '../index.html';
+                return;
+            }
+            if (typeof e.data === 'string' && e.data !== 'keyboard') {
+                window.location.href = `./${e.data}.html`;
+                return;
+            }
+        }, false);
+
+        window.onload = function() {
+            window.parent.postMessage('keyboard', '*');
+        }
+
+        document.querySelector('.back-list').addEventListener('click', () => {
+            window.location.href = '..'
+        })
+    </script>
+</body>
+</html>

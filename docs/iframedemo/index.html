@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Pay UI Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- 忽略某些安卓平台对某些邮箱的识别 -->
+    <meta name="format-detection" content="email=no" />
+    <!-- 当网站添加到主屏幕快速启动方式，可隐藏地址栏，仅针对iOS的safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- 将网站添加到主屏幕快速启动方式，仅针对ios的safari顶端状态条的样式，可选default、black、black-translucent -->
+    <meta name="description" content="这是一个下单测试demo页面"/>
+    <meta name="keywords" content="pay,order,demo"/>
+    <style>
+        * {
+          box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: white;
+            padding-top: 20px;
+        }
+        #merchant {
+            margin: 0 16px 16px;
+        }
+        #input {
+            margin: 16px;
+        }
+        #remark {
+            margin: 21px 16px 0 16px;
+        }
+        #huabei {
+            margin: 10px;
+        }
+        #verify {
+            margin: 10px;
+        }
+        #keyboard {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    </style>
+    <script src="../../dist/PayKeyboard.js"></script>
+    <script src="../../dist/PayInput.js"></script>
+    <script src="../../dist/PayMerchant.js"></script>
+    <script src="../../dist/PayToast.js"></script>
+    <script src="../../dist/PayHuabei.js"></script>
+    <script src="../../dist/PayInstallment.js"></script>
+    <script src="../../dist/PayRemark.js"></script>
+    <script src="../../dist/PayCoupon.js"></script>
+    <script src="../../dist/PayFreeModal.js"></script>
+</head>
+<body>
+    <div id="toast"></div>
+    <div id="merchant"></div>
+    <div id="input"></div>
+    <div id="remark"></div>
+    <div id="huabei"></div>
+    <div id="installment"></div>
+    <div id="keyboard"></div>
+    <div id="coupon"></div>
+    <script src="index.js"></script>
+    <script type="text/javascript" src="https://g.alicdn.com/dt/tracker/4.3.1/??tracker.Tracker.js,tracker.interfaceTrackerPlugin.js,tracker.performanceTrackerPlugin.js" crossorigin></script>
+    <script src="tracker.js"></script>
+</body>
+</html>

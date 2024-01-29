@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../../dist/PayHuabei.js"></script>
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+    <div class="back-list">
+        <img src="../arrow.svg" class="arrow-left" />
+        <span class="back-text">返回</span>
+    </div>
+    <div class="ui-wrapper">
+        <div class="demo-logo__bd">
+          <div class="demo-logo__text">PayHuabei</div>
+        </div>
+        <div id="huabei"></div>
+        <div class="demo-operations">
+            <button onclick="huabei.show()">展示花呗组件</button>
+            <button onclick="huabei.hide()">隐藏花呗组件</button>
+            <button onclick="huabei.setStatus(true)">设置勾选</button>
+            <button onclick="huabei.setStatus(false)">设置不勾选</button>
+        </div>
+    </div>
+    <script>
+        var huabei = new PayHuabei({
+            element: document.getElementById('huabei'),
+        });
+
+        window.addEventListener('message', (e) => {
+            if (e.data === 'index') {
+                window.location.href = '../index.html';
+                return;
+            }
+            if (typeof e.data === 'string' && e.data !== 'huabei') {
+                window.location.href = `./${e.data}.html`;
+                return;
+            }
+        }, false);
+
+        window.onload = function() {
+            window.parent.postMessage('huabei', '*');
+        }
+
+        document.querySelector('.back-list').addEventListener('click', () => {
+            window.location.href = '..'
+        })
+    </script>
+</body>
+</html>
