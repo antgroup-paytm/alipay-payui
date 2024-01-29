@@ -108,10 +108,10 @@ function config () {
     }
 
     if (config.loadSidebar === true) {
-      config.loadSidebar = '_sidebar' + config.ext;
+      config.loadSidebar = 'sidebar' + config.ext;
     }
     if (config.loadNavbar === true) {
-      config.loadNavbar = '_navbar' + config.ext;
+      config.loadNavbar = 'navbar' + config.ext;
     }
     if (config.coverpage === true) {
       config.coverpage = 'coverpage' + config.ext;
