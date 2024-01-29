@@ -146,7 +146,7 @@
 
             const iFrame = document.getElementById('iframedemopage');
             // 组件在文档页面中对应的 hash 值
-            const UIHashlist = ['bindBankCard', 'keyboard', 'input', 'merchant', 'toast', 'remark', 'huabei', 'installment', 'message', 'coupon', 'result', 'provider', 'card', 'verify'];
+            const UIHashlist = ['bindBankCard', 'verifyPhone', 'keyboard', 'input', 'merchant', 'toast', 'remark', 'huabei', 'installment', 'message', 'coupon', 'result', 'provider', 'card', 'verify'];
             window.onhashchange = function(e) {
                 const hash = e.target.location.hash.slice(2).split('?')[0];
                 if (UIHashlist.indexOf(hash) > -1) {
