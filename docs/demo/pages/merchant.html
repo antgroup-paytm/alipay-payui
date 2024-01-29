@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../../dist/PayMerchant.js"></script>
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+    <div class="back-list">
+        <img src="../arrow.svg" class="arrow-left" />
+        <span class="back-text">返回</span>
+    </div>
+    <div class="ui-wrapper">
+        <div class="demo-logo__bd">
+          <div class="demo-logo__text">PayMerchant</div>
+        </div>
+        <div id="merchant"></div>
+        <div class="demo-operations">
+            <button onclick="merchant.setAvatar('https://gw.alipayobjects.com/mdn/rms_349abe/afts/img/A*6N04Tb4TSdcAAAAAAAAAAABkARQnAQ')">设置商户头像</button>
+            <button onclick="merchant.setName('test shop')">设置商户名称</button>
+            <button onclick="merchant.setTag('test tag')">设置商户标签</button>
+            <button onclick="merchant.hideTag()">隐藏商户标签</button>
+            <button onclick="merchant.reset()">重置商户信息</button>
+        </div>
+    </div>
+    <script>
+        // 商户信息
+        var merchant = new PayMerchant({
+            element: document.getElementById('merchant'),
+            avatar: 'https://gw.alipayobjects.com/mdn/rms_349abe/afts/img/A*An0xQrA3snUAAAAAAAAAAABkARQnAQ',
+            name: '勾庄蔬果直销店(*玉柱)',
+            tag: '经常光顾'
+        });
+
+        window.addEventListener('message', (e) => {
+            if (e.data === 'index') {
+                window.location.href = '../index.html';
+                return;
+            }
+            if (typeof e.data === 'string' && e.data !== 'merchant') {
+                window.location.href = `./${e.data}.html`;
+                return;
+            }
+        }, false);
+
+        window.onload = function() {
+            window.parent.postMessage('merchant', '*');
+        }
+
+        document.querySelector('.back-list').addEventListener('click', () => {
+            window.location.href = '..'
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../../dist/PayMessage.js"></script>
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+    <div class="back-list">
+        <img src="../arrow.svg" class="arrow-left" />
+        <span class="back-text">返回</span>
+    </div>
+    
+    <div class="ui-wrapper">
+        <div class="demo-logo__bd">
+          <div class="demo-logo__text">PayMessage</div>
+        </div>
+        <p style="color: #ff934b;padding: 10px 0;">样式一</p>
+        <div id="message" style="margin-bottom: 30px;"></div>
+        <p style="color: #ff934b;padding: 10px 0;">样式二</p>
+        <div id="message2"></div>
+    </div>
+    <script>
+        var message = new PayMessage({
+            element: document.getElementById('message'),
+            title: '活动',  // 可为空
+            content: '文字说明-最多展示2行',
+        });
+
+        var message2 = new PayMessage({
+            element: document.getElementById('message2'),
+            title: '随机立减',
+            content: '-¥2.00',
+            type: 'discount'
+        });
+
+        window.addEventListener('message', (e) => {
+            if (e.data === 'index') {
+                window.location.href = '../index.html';
+                return;
+            }
+            if (typeof e.data === 'string' && e.data !== 'message') {
+                window.location.href = `./${e.data}.html`;
+                return;
+            }
+        }, false);
+
+        window.onload = function() {
+            window.parent.postMessage('message', '*');
+        }
+
+        document.querySelector('.back-list').addEventListener('click', () => {
+            window.location.href = '..'
+        })
+    </script>
+</body>
+</html>

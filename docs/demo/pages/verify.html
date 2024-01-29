@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../../dist/PayVerify.js"></script>
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+    <div class="back-list">
+        <img src="../arrow.svg" class="arrow-left" />
+        <span class="back-text">返回</span>
+    </div>
+    <div class="ui-wrapper">
+        <div class="demo-logo__bd">
+          <div class="demo-logo__text">PayVerify</div>
+        </div>
+        <div id="verify"></div>
+        <div class="demo-operations">
+            <button onclick="verify.resetCountDown()">重置倒计时</button>
+        </div>
+    </div>
+    <script>
+        // verify 手机验证
+        const verify = new PayVerify({
+            element: document.getElementById('verify'),
+            data: ['159****7687', '15957187682'],
+            time: 30,
+            length: 6,
+            buttonText: '提交',
+        });
+
+        verify.on('submit', function(e){
+          alert(`验证码是：${e.code}， 手机号是：${e.phone}`)
+        })
+
+        verify.on('getCode', function(e){
+            // 这里调用服务端接口发送验证码
+            // 成功后调用倒计时api
+            verify.countDown();
+        })
+
+        window.addEventListener('message', (e) => {
+            if (e.data === 'index') {
+                window.location.href = '../index.html';
+                return;
+            }
+            if (typeof e.data === 'string' && e.data !== 'verify') {
+                window.location.href = `./${e.data}.html`;
+                return;
+            }
+        }, false);
+
+        window.onload = function() {
+            window.parent.postMessage('verify', '*');
+        }
+
+        document.querySelector('.back-list').addEventListener('click', () => {
+            window.location.href = '..'
+        })
+    </script>
+</body>
+</html>

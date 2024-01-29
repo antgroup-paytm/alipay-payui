@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../../dist/PayProvider.js"></script>
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+    <div class="back-list">
+        <img src="../arrow.svg" class="arrow-left" />
+        <span class="back-text">返回</span>
+    </div>
+    <div class="ui-wrapper">
+        <div class="demo-logo__bd">
+          <div class="demo-logo__text">PayProvider</div>
+        </div>
+        <div id="provider"></div>
+        <div class="demo-operations">
+            <button onclick="provider.setLogo('https://gw.alipayobjects.com/mdn/rms_349abe/afts/img/A*6Y_BTbTH4gwAAAAAAAAAAAAAARQnAQ')">设置供应商logo</button>
+            <button onclick="provider.setName('宇宙银行')">设置供应商名称</button>
+            <button onclick="provider.reset()">重置供应商信息</button>
+            <button onclick="provider.setBackground('#07C160')">设置背景颜色</button>
+        </div>
+    </div>
+    <script>
+        // 商户信息
+        var provider = new PayProvider({
+            element: document.getElementById('provider'),
+            logo: 'https://gw.alipayobjects.com/mdn/rms_349abe/afts/img/A*kkQmSoIKcY0AAAAAAAAAAAAAARQnAQ',
+            name: '支付宝',
+            background: '#1677FF'
+        });
+
+        window.addEventListener('message', (e) => {
+            if (e.data === 'index') {
+                window.location.href = '../index.html';
+                return;
+            }
+            if (typeof e.data === 'string' && e.data !== 'provider') {
+                window.location.href = `./${e.data}.html`;
+                return;
+            }
+        }, false);
+
+        window.onload = function() {
+            window.parent.postMessage('provider', '*');
+        }
+
+        document.querySelector('.back-list').addEventListener('click', () => {
+            window.location.href = '..'
+        })
+    </script>
+</body>
+</html>

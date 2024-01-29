@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>绑定银行卡</title>
+        <script src="../../../dist/BindBankCard.js"></script>
+        <link rel="stylesheet" href="pages.css" />
+    </head>
+    <body>
+        <div class="back-list">
+            <img src="../arrow.svg" class="arrow-left" />
+            <span class="back-text">返回</span>
+        </div>
+        <div id="bindBankCard"></div>
+        <script>
+            var bindBankCard = new BindBankCard({
+                element: document.getElementById('bindBankCard'),
+                bankCardLogo: 'https://mdn.alipayobjects.com/fin_instasset/uri/img/as/instasset/PINGAN/BANK_LOGO/PURE?zoom=160w_160h.png',
+                bankCardName: '中国光大银行',
+                headBackground: 'linear-gradient(134deg, #01B4A2 0%, #0389AC 100%);',
+                bindBankData: [
+                    {
+                        reservedPhoneNo: '183****7754',
+                        bankCardArray: [
+                            {
+                                bankType: '信用卡',
+                                bankSubType: 'I类户',
+                                bankCardNo: '6217 **** **** 7731',
+                            },
+                            {
+                                bankType: '储蓄卡',
+                                bankSubType: 'II类户',
+                                bankCardNo: '6217 **** **** 6889',
+                            },
+                        ],
+                    },
+                    {
+                        reservedPhoneNo: '183****8680',
+                        bankCardArray: [
+                            {
+                                bankType: '信用卡',
+                                bankSubType: 'I类户',
+                                bankCardNo: '6217 **** **** 1234',
+                            },
+                            {
+                                bankType: '储蓄卡',
+                                bankSubType: 'II类户',
+                                bankCardNo: '6217 **** **** 5678',
+                            },
+                        ],
+                    },
+                    {
+                        reservedPhoneNo: '183****8600',
+                        bankCardArray: [
+                            {
+                                bankType: '信用卡',
+                                bankSubType: 'I类户',
+                                bankCardNo: '6217 **** **** 1234',
+                            },
+                        ],
+                    },
+                ],
+                disabledBindBankCard: [
+                    {
+                        bankType: '信用卡',
+                        bankSubType: 'I类户',
+                        bankCardNo: '6217 **** **** 7731',
+                        disabledReason: '不可用原因可以放在这里，最多2行不可用原因可以放在这里，最多2行不可用原因可以放在这里',
+                    },
+                    {
+                        bankType: '储蓄卡',
+                        bankSubType: 'II类户',
+                        bankCardNo: '6217 **** **** 6889',
+                        disabledReason: '不可用原因可以放在这里，最多2行不可用原因可以放在这里，最多2行不可用原因可以放在这里',
+                    },
+                ],
+                signType: 'strong',
+                protocolDescribe: '查看并同意协议',
+                protocolArray: ['《协议1》', '《协议2》'],
+                pageDesc: '本页面由中国光大银行提供',
+            });
+            // 监听提交绑卡事件
+            bindBankCard.on('onSubmit', function(bankCardArray) {
+                console.log('onSubmit', bankCardArray);
+            });
+
+            // 监听勾选银行卡/取消银行卡事件
+            bindBankCard.on('onChange', function(e) {
+                console.log('onChange_page', e);
+            });
+
+            // 监听点击协议事件
+            bindBankCard.on('onProtocol', function(e) {
+                console.log('onProtocol', e);
+            });
+
+            bindBankCard.on('init', function() {
+                console.log('bindBankCard init完成事件触发');
+            });
+
+            window.addEventListener(
+                'message',
+                (e) => {
+                    console.log('监听到message', e.data);
+                    if (e.data === 'index') {
+                        window.location.href = '../index.html';
+                        return;
+                    }
+                    if (typeof e.data === 'string' && e.data !== 'bindBankCard') {
+                        window.location.href = `./${e.data}.html`;
+                        return;
+                    }
+                },
+                false
+            );
+
+            window.onload = function() {
+                window.parent.postMessage('bindBankCard', '*');
+            };
+
+            document.querySelector('.back-list').addEventListener('click', () => {
+                window.location.href = '..';
+            });
+        </script>
+    </body>
+</html>

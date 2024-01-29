@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayInput</title>
+    <script src="../../../dist/PayInput.js"></script>
+    <script src="../../../dist/PayToast.js"></script>
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+    <div class="back-list">
+        <img src="../arrow.svg" class="arrow-left" />
+        <span class="back-text">返回</span>
+    </div>
+    <div class="ui-wrapper">
+        <div class="demo-logo__bd">
+          <div class="demo-logo__text">PayInput</div>
+        </div>
+        <div id="input"></div>
+        <div id="toast"></div>
+        <div class="demo-operations">
+            <button onclick="input.reset()">重置输入框</button>
+            <button onclick="input.add(1)">输入框后添加"1"</button>
+            <button onclick="input.del()">删除最后一位</button>
+            <button onclick="input.update('5000')">更新输入框值为5000</button>
+            <button onclick="input.setMax(500)">设置最大可输入金额500</button>
+            <button onclick="input.focus()">获取焦点focus</button>
+            <button onclick="input.blur()">失去焦点blur</button>
+            <button onclick="input.clear()">清除输入框</button>
+        </div>
+    </div>
+    <script>
+        // 输入框
+        var input = new PayInput({
+            element: document.getElementById('input'),
+            value: '100'
+        });
+        input.on('change', function(e){
+            console.log(e)
+        });
+        input.on('max', function(e){
+            console.log('max', e)
+            toast.show(e.value + '超过最大金额')
+        })
+
+        // toast 弹框
+        var toast = new PayToast({
+            element: document.getElementById('toast'),
+            tips: '超过最大金额',
+            offset: '150px',
+            duration: 3000
+        });
+
+
+        window.addEventListener('message', (e) => {
+            if (e.data === 'index') {
+                window.location.href = '../index.html';
+                return;
+            }
+            if (typeof e.data === 'string' && e.data !== 'input') {
+                window.location.href = `./${e.data}.html`;
+                return;
+            }
+        }, false);
+
+        window.onload = function() {
+            window.parent.postMessage('input', '*');
+        }
+
+        document.querySelector('.back-list').addEventListener('click', () => {
+            window.location.href = '..'
+        })
+    </script>
+</body>
+</html>

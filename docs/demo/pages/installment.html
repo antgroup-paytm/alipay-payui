@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayInstallment</title>
+    <script src="../../../dist/PayInstallment.js"></script>
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+    <div class="back-list">
+        <img src="../arrow.svg" class="arrow-left" />
+        <span class="back-text">返回</span>
+    </div>
+    <div class="ui-wrapper">
+        <div id="installment"></div>
+        <div class="demo-operations">
+            <button onclick="installment.show([{
+                monthlyPay: 100,
+                totalMonth: 12,
+                transactionFee: 1
+            }, {
+                monthlyPay: 200,
+                totalMonth: 6,
+                transactionFee: 1
+            }, {
+                monthlyPay: 400,
+                totalMonth: 3,
+                transactionFee: 1
+            }], 12);">展示分期组件</button>
+            <button onclick="installment.hide()">隐藏分期组件</button>
+        </div>
+    </div>
+    <script>
+        var installment = new PayInstallment({
+            element: document.getElementById('installment'),
+        });
+
+        installment.on('submit', (e) => {
+            console.log('submit', e);
+        });
+
+        installment.on('show', (e) => {
+            console.log('show', e);
+        });
+
+        installment.on('close', (e) => {
+            console.log('close', e);
+        });
+
+        window.addEventListener('message', (e) => {
+            if (e.data === 'index') {
+                window.location.href = '../index.html';
+                return;
+            }
+            if (typeof e.data === 'string' && e.data !== 'installment') {
+                window.location.href = `./${e.data}.html`;
+                return;
+            }
+        }, false);
+
+        window.onload = function() {
+            window.parent.postMessage('installment', '*');
+        }
+
+        document.querySelector('.back-list').addEventListener('click', () => {
+            window.location.href = '..'
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="../../../dist/PayCard.js"></script>
+        <link rel="stylesheet" href="pages.css" />
+    </head>
+    <body>
+        <div class="back-list">
+            <img src="../arrow.svg" class="arrow-left" />
+            <span class="back-text">返回</span>
+        </div>
+        <div class="ui-wrapper">
+            <div class="demo-logo__bd">
+                <div class="demo-logo__text">PayCard</div>
+            </div>
+            <div id="card"></div>
+        </div>
+        <script>
+            // 商户信息
+            var card = new PayCard({
+                element: document.getElementById('card'),
+                title: '选择要绑定的储蓄卡',
+                data: ['6263 **** **** 3643', '6263 **** **** 3645'],
+                defaultChecked: 0,
+                protocol: '同意授权银行将本人绑卡信息传递给支付机构',
+            });
+            card.on('submit', function(e) {
+                alert(`选择的卡片是：${e.item}`);
+            });
+            window.addEventListener(
+                'message',
+                (e) => {
+                    if (e.data === 'index') {
+                        window.location.href = '../index.html';
+                        return;
+                    }
+                    if (typeof e.data === 'string' && e.data !== 'card') {
+                        window.location.href = `./${e.data}.html`;
+                        return;
+                    }
+                },
+                false
+            );
+
+            window.onload = function() {
+                window.parent.postMessage('card', '*');
+            };
+
+            document.querySelector('.back-list').addEventListener('click', () => {
+                window.location.href = '..';
+            });
+        </script>
+    </body>
+</html>

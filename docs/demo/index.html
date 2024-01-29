@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Pay UI Demo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" href="index.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="demo-logo">
+                <div class="demo-logo__bd">
+                    <div class="demo-logo__text">Pay UI</div>
+                </div>
+                <div class="demo-logo__ft">
+                    一套组件化、可复用、易扩展的支付 UI 组件库
+                </div>
+            </div>
+            <div class="ui-list">
+                <a class="ui-item" href="pages/bindBankCard.html">
+                    <span class="ui-item-title">2.0绑卡 BindBankCard</span>
+                    <img src="arrow.svg" class="arrow-right" />
+                </a>
+                <a class="ui-item" href="pages/verifyPhone.html">
+                    <span class="ui-item-title">2.0手机验证 PayVerifyPhone</span>
+                    <img src="arrow.svg" class="arrow-right" />
+                </a>
+                <a class="ui-item" href="pages/keyboard.html">
+                    <span class="ui-item-title">键盘 PayKeyboard</span>
+                    <img src="arrow.svg" class="arrow-right" />
+                </a>
+                <a class="ui-item" href="pages/input.html">
+                    <span class="ui-item-title">输入框 PayInput</span>
+                    <img src="arrow.svg" class="arrow-right" />
+                </a>
+                <a class="ui-item" href="pages/merchant.html">
+                    <span class="ui-item-title">商户信息 PayMerchant</span>
+                    <img src="arrow.svg" class="arrow-right" />
+                </a>
+                <a class="ui-item" href="pages/toast.html">
+                    <span class="ui-item-title">提示 PayToast</span>
+                    <img src="arrow.svg" class="arrow-right" />
+                </a>
+                <a class="ui-item" href="pages/remark.html">
+                    <span class="ui-item-title">备注 PayRemark</span>
+                    <img src="arrow.svg" class="arrow-right" />
+                </a>
+                <a class="ui-item" href="pages/huabei.html">
+                    <span class="ui-item-title">花呗 PayHuabei</span>
+                    <img src="arrow.svg" class="arrow-right" />
+                </a>
+                <a class="ui-item" href="pages/installment.html">
+                    <span class="ui-item-title">分期 PayInstallment</span>
+                    <img src="arrow.svg" class="arrow-right" />
+                </a>
+                <a class="ui-item" href="pages/card.html">
+                    <span class="ui-item-title">绑卡 PayCard</span>
+                    <img src="arrow.svg" class="arrow-right" />
+                </a>
+                <a class="ui-item" href="pages/message.html">
+                    <span class="ui-item-title">运营信息 PayMessage</span>
+                    <img src="arrow.svg" class="arrow-right" />
+                </a>
+                <a class="ui-item" href="pages/provider.html">
+                    <span class="ui-item-title">服务提供商信息 PayProvider</span>
+                    <img src="arrow.svg" class="arrow-right" />
+                </a>
+                <a class="ui-item" href="pages/result.html">
+                    <span class="ui-item-title">支付结果 PayResult</span>
+                    <img src="arrow.svg" class="arrow-right" />
+                </a>
+                <a class="ui-item" href="pages/coupon.html">
+                    <span class="ui-item-title">消费券 PayCoupon</span>
+                    <img src="arrow.svg" class="arrow-right" />
+                </a>
+                <a class="ui-item" href="pages/verify.html">
+                    <span class="ui-item-title">手机验证 PayVerify</span>
+                    <img src="arrow.svg" class="arrow-right" />
+                </a>
+            </div>
+        </div>
+        <script>
+            const UIHashlist = ['keyboard', 'input', 'merchant', 'toast', 'remark', 'huabei', 'installment', 'message', 'coupon', 'result', 'provider', 'card', 'verify', 'freemodal', 'bindBankCard', 'verifyPhone'];
+            window.addEventListener(
+                'message',
+                (e) => {
+                    const { data: hash } = e || {};
+                    if (UIHashlist.indexOf(hash) > -1 && hash !== 'index') {
+                        window.location.href = `./pages/${hash}.html`;
+                    }
+                },
+                false
+            );
+        </script>
+    </body>
+</html>

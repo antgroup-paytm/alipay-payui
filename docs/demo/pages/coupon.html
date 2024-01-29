@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayCoupon</title>
+    <script src="../../../dist/PayCoupon.js"></script>
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+    <div class="back-list">
+        <img src="../arrow.svg" class="arrow-left" />
+        <span class="back-text">返回</span>
+    </div>
+    <div class="ui-wrapper">
+        <div id="coupon"></div>
+        <div class="demo-operations">
+            <button onclick="coupon.show([
+                {
+                  'couponDesc': '选择支付满10减2优惠券',
+                  'startTime': 121212121212,
+                  'endTime': 3535353535353,
+                  'limitAmount': '',
+                  'limitCentAmount': '',
+                  'disAmount': 5,
+                  'disCentAmount': 2,
+                  'couponId': '12',
+                  'couponExtInfo': {},
+                  'couponTypeDesc': '折',
+                  'disable': true,
+                  'endTimeDesc': '有效期至2021-03-18'
+                },
+                {
+                  'couponDesc': '选择支付满10减2优惠券',
+                  'startTime': 121212121212,
+                  'endTime': 3535353535353,
+                  'limitAmount': '',
+                  'limitCentAmount': '',
+                  'disAmount': 5,
+                  'disCentAmount': 2,
+                  'couponId': '13',
+                  'couponExtInfo': {},
+                  'couponTypeDesc': '折',
+                  'disable': false,
+                  'endTimeDesc': '有效期至2021-03-18'
+                },
+                {
+                  'couponDesc': '选择支付满10减2优惠券',
+                  'startTime': 121212121212,
+                  'endTime': 3535353535353,
+                  'limitAmount': '',
+                  'limitCentAmount': '',
+                  'disAmount': 5,
+                  'disCentAmount': 2,
+                  'couponId': '14',
+                  'couponExtInfo': {},
+                  'couponTypeDesc': '折',
+                  'disable': false,
+                  'endTimeDesc': '有效期至2021-03-18'
+                }
+            ], 13);">展示消费券组件</button>
+            <button onclick="coupon.hide()">隐藏消费券组件</button>
+        </div>
+    </div>
+    <script>
+        var coupon = new PayCoupon({
+            element: document.getElementById('coupon'),
+        });
+        coupon.on('submit', (e) => {
+            console.log('submit', e);
+        });
+
+        coupon.on('show', (e) => {
+            console.log('show', e);
+        });
+
+        coupon.on('close', (e) => {
+            console.log('close', e);
+        });
+
+        window.addEventListener('message', (e) => {
+            if (e.data === 'index') {
+                window.location.href = '../index.html';
+                return;
+            }
+            if (typeof e.data === 'string' && e.data !== 'coupon') {
+                window.location.href = `./${e.data}.html`;
+                return;
+            }
+        }, false);
+
+        window.onload = function() {
+            window.parent.postMessage('coupon', '*');
+        }
+
+        document.querySelector('.back-list').addEventListener('click', () => {
+            window.location.href = '..'
+        })
+    </script>
+</body>
+</html>
