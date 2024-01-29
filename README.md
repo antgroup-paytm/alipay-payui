@@ -11,24 +11,7 @@
 
 ## Badges
 
-[![TNPM version][tnpm-image]][tnpm-url]
-[![TNPM downloads][tnpm-downloads-image]][tnpm-url]
-
-
-[tnpm-image]: https://npm.alibaba-inc.com/badge/v/alipay-payui.svg
-[tnpm-url]: https://npm.alibaba-inc.com/package/alipay-payui
-[tnpm-downloads-image]: https://npm.alibaba-inc.com/badge/d/alipay-payui.svg
-
---------------------
-
-## Badges
-
-[![TNPM version][tnpm-image]][tnpm-url]
-[![TNPM downloads][tnpm-downloads-image]][tnpm-url]
-
-[tnpm-image]: https://npm.alibaba-inc.com/badge/v/alipay-payui.svg
-[tnpm-url]: https://npm.alibaba-inc.com/package/alipay-payui
-[tnpm-downloads-image]: https://npm.alibaba-inc.com/badge/d/alipay-payui.svg
+[npm-url](https://www.npmjs.com/package/alipay-payui)
 
 ---
 
