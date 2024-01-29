@@ -2,10 +2,10 @@
 
 `alipay-payui` 是一套适用于支付场景的组件库。
 
-[官方站点](https://render.alipay.com/p/w/pay-ui/#/) |
-[模板示例](https://render.alipay.com/p/w/pay-ui/iframedemo/index.html) |
-[绑卡示例](https://render.alipay.com/p/w/pay-ui/carddemo/index.html) |
-[组件示例](https://render.alipay.com/p/w/pay-ui/demo/index.html)
+[官方站点](https://antgroup-paytm.github.io/alipay-payui/#/) |
+[模板示例](https://antgroup-paytm.github.io/alipay-payui/iframedemo/index.html) |
+[绑卡示例](https://antgroup-paytm.github.io/alipay-payui/carddemo/index.html) |
+[组件示例](https://antgroup-paytm.github.io/alipay-payui/demo/index.html)
 
 ![官方站点](https://gw.alipayobjects.com/mdn/rms_b05656/afts/img/A*mFU_S5YB-eUAAAAAAAAAAABkARQnAQ)
 
@@ -47,7 +47,7 @@ yarn add alipay-payui
 ```
 
 #### 方式二 通过链接引用
-
+- 2.0组件暂不支持该用法
 ```html
 <!--键盘-->
 <script src="https://gw.alipayobjects.com/as/g/PayTM-Core/pay-ui/0.0.20/PayKeyboard.js"></script>
