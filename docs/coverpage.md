@@ -1,4 +1,4 @@
-# PAY UI <small>v0.0.20</small>
+# PAY UI <small>v1.0.2</small>
 
 > 支付 UI 组件库
 
