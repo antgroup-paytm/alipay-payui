@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="x-dns-prefetch-control" content="on">
     <link rel="shortcut icon" type="image/ico" href="./_images/favicon.ico">
-    <link rel="stylesheet" href="./_scripts/lib/themes/vue.css">
+    <link rel="stylesheet" href="./scripts/lib/themes/vue.css">
     <style>table {display: table!important}.markdown-section p>img{box-shadow: 0 8px 20px rgba(143,168,191,0.35)}.markdown-section code {color:#3498DB;}.markdown-section ul li{list-style-type: disc}.cover-main img {width: 80px;}
       .payui-list {
         position: fixed;
@@ -75,7 +75,7 @@
           </div>
       </div>
     </div>
-    <script src="./_scripts/html2json.js"></script>
+    <script src="./scripts/html2json.js"></script>
     <script>
         var basePath = '';
         if(window.location.hostname.indexOf('alipay.com') > -1 || window.location.hostname.indexOf('alipay.net') > -1) {
@@ -142,9 +142,9 @@
             }
         })
     </script>
-    <script src="./_scripts/lib/docsify.min.js"></script>
-    <script src="./_scripts/lib/plugins/search.min.js"></script>
-    <script src="./_scripts/lib/docsify-copy-code.min.js"></script>
+    <script src="./scripts/lib/docsify.min.js"></script>
+    <script src="./scripts/lib/plugins/search.min.js"></script>
+    <script src="./scripts/lib/docsify-copy-code.min.js"></script>
 </body>
 
 </html>
