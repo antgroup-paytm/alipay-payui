@@ -9,7 +9,7 @@
     <meta name="keywords" content="pay, alipay-payui, 组件库">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="x-dns-prefetch-control" content="on">
-    <link rel="shortcut icon" type="image/ico" href="./_images/favicon.ico">
+    <link rel="shortcut icon" type="image/ico" href="./images/favicon.ico">
     <link rel="stylesheet" href="./scripts/lib/themes/vue.css">
     <style>table {display: table!important}.markdown-section p>img{box-shadow: 0 8px 20px rgba(143,168,191,0.35)}.markdown-section code {color:#3498DB;}.markdown-section ul li{list-style-type: disc}.cover-main img {width: 80px;}
       .payui-list {

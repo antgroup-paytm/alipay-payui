@@ -114,7 +114,7 @@ function config () {
       config.loadNavbar = '_navbar' + config.ext;
     }
     if (config.coverpage === true) {
-      config.coverpage = '_coverpage' + config.ext;
+      config.coverpage = 'coverpage' + config.ext;
     }
     if (config.repo === true) {
       config.repo = '';
@@ -4393,10 +4393,10 @@ function fetchMixin(proto) {
           path = coverpage;
         }
       } else if (Array.isArray(coverpage)) {
-        path = coverpage.indexOf(routePath) > -1 && '_coverpage';
+        path = coverpage.indexOf(routePath) > -1 && 'coverpage';
       } else {
         var cover = coverpage[routePath];
-        path = cover === true ? '_coverpage' : cover;
+        path = cover === true ? 'coverpage' : cover;
       }
 
       var coverOnly = Boolean(path) && this.config.onlyCover;
